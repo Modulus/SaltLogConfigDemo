@@ -8,7 +8,7 @@ The test setup consist of a salt-master which also has salt-minion installed and
 1. git clone https://github.com/Modulus/SaltLogConfigDemo.git
 2. cd into folder
 3. vagrant up
-4. vagrant ssh master
+4. vagrant ssh
 5. salt "*" state.highstate
 6. Inspect the container
 
