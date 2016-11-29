@@ -17,8 +17,8 @@ The test setup consist of a salt-master which also has the salt-minion installed
 2. sudo docker inspect container
 3. sudo docker logs container
 
-* should have log config on inspect*
-![Inspect Image](/image/log-config.PNG)
+*should have log config on inspect*
+![Inspect Image](/image/logconfig.PNG)
 
 ### Where is the state file?
 In salt/container/init.sls
