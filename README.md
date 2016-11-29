@@ -2,7 +2,7 @@
 This shows how to setup a docker container with log_config in the 2016.11.0 release of Saltstack
 
 ## Test setup
-The test setup consist of a salt-master which also has the salt-minion installed and configured.
+The test setup consist of a salt-master which also has salt-minion installed and configured.
 
 ## How do i run this?
 1. git clone https://github.com/Modulus/SaltLogConfigDemo.git
