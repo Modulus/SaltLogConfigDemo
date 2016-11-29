@@ -72,10 +72,10 @@ id: master
 #  cab_u: 14-15
 
 grains:
-  role:
+  roles:
     - vagrant
-    - statsd
-  env: dev
+    - master
+    - container
 
 # Where cache data goes.
 #cachedir: /var/cache/salt/minion

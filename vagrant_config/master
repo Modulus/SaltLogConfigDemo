@@ -8,33 +8,6 @@ publisher_acl:
   vagrant:
     - '.*'
 
-engines_dirs:
-  - /srv/salt/dev/engines
-
-nodegroups:
-  dev: "G@env:dev"
-  dev-mq: "G@env:dev and G@role:mq"
-  dev-web: "G@env:dev and G@role:web"
-  dev-app: "G@env:dev and G@role:app"
-  dev-load: "G@env:dev and G@role:load"
-  dev-bench: "G@env:dev and G@role:bench"
-  qa: "G@env:qa"
-  qa-mq: "G@env:qa and G@role:mq"
-  qa-web: "G@env:qa and G@role:web"
-  qa-app: "G@env:qa and G@role:app"
-  qa-load: "G@env:dev and G@role:load"
-
-
-
-#salt-api config:
-rest_cherrypy:
-  port: 8000
-  ssl_crt: /srv/certs/api.crt
-  ssl_key: /srv/certs/api.key
-  debug: True
-  root_prefix: /salt-api
-
-
 # Per default, the master will automatically include all config files
 # from master.d/*.conf (master.d is a directory in the same directory
 # as the main master config file).

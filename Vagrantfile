@@ -10,6 +10,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     master_config.vm.host_name = 'master'
     master_config.vm.network "private_network", ip: "192.168.78.20" #, :bridge => "eth1"
     master_config.vm.synced_folder "salt/", "/srv/salt"
+
+    master_config.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 2
+    end
   #  master_config.landrush.enabled = true
 
 
@@ -20,7 +25,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.minion_key = "vagrant_config/keys/master_minion.pem"
       salt.minion_pub = "vagrant_config/keys/master_minion.pub"
       salt.seed_master = {
-                          "minion1" => "vagrant_config/keys/minion1.pub",
                           "master" => "vagrant_config/keys/master_minion.pub"
                          }
 
@@ -33,26 +37,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.bootstrap_options = "-P -c /tmp"
     end
   end
-
-  config.vm.define :minion1 do |minion_config|
-    minion_config.vm.box = "ubuntu/trusty64"
-    minion_config.vm.host_name = 'minion1'
-    minion_config.vm.network "private_network", ip: "192.168.78.21"
-    #minion_config.landrush.enabled = true
-    minion_config.vm.provider "virtualbox" do |v|
-      v.memory = 2048
-      v.cpus = 2
-    end
-    minion_config.vm.provision :salt do |salt|
-      salt.minion_config = "vagrant_config/minion1"
-      salt.minion_key = "vagrant_config/keys/minion1.pem"
-      salt.minion_pub = "vagrant_config/keys/minion1.pub"
-      salt.install_type = "stable"
-      salt.verbose = true
-      salt.colorize = true
-      #salt.bootstrap_options = "-P -c /tmp"
-    end
-  end
-
 
 end

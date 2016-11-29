@@ -1,3 +1,6 @@
+include:
+  - docker.groups
+
 python-pip-whl:
   pkg.removed
 
@@ -10,11 +13,11 @@ pip-install:
 
 dockerpy:
   pip.installed:
-    - name: docker-py
+    - name: docker-py == 1.5.0
     - require:
       - pkg: python-pip-whl
       - pkg: pip-install
-    - unless: pip list | grep docker-py
+    - unless: pip list | grep docker-py==1.5.0
 
 
 docker.dependencies:
@@ -30,6 +33,9 @@ docker.repository:
     - name: deb https://apt.dockerproject.org/repo ubuntu-trusty main
     - keyserver: hkp://p80.pool.sks-keyservers.net:80
     - keyid: 58118E89F3A912897C070ADBF76221572C52609D
+    - require:
+      - pip: dockerpy
+      - sls: docker.groups
 
 # Remove old repo if it exists
 docker.purge.lxc-docker:
@@ -43,6 +49,8 @@ docker.installed:
       - pkg: docker.dependencies
       - pkg: docker.purge.lxc-docker
       - pkgrepo: docker.repository
+      - pip: dockerpy
+      - sls: docker.groups
 
 
 docker.expose.home:
