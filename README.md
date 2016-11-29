@@ -22,13 +22,3 @@ The test setup consist of a salt-master which also has the salt-minion installed
 
 ### Where is the state file?
 In salt/container/init.sls
-
-start container:
-  dockerng.running:
-    - name: cont
-    - image: container
-    - log_config:
-        Type:  json-file
-        Config:
-          max-file: '5'
-          max-size: '10K'   
